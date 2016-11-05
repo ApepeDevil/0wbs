@@ -98,12 +98,8 @@ header p:first-child {
           border-radius: 4px;
 }
 .captcha {
-  /*display: block;*/
   width: 304px;
   margin: 10px auto;
-/*  position: absolute;
-  top: 410px;
-  left: 39%;*/
 }
 .subscribe {
   background: rgba(0,0,0,0.95);
@@ -113,20 +109,31 @@ header p:first-child {
   margin-bottom: 19px;
   border-radius: 0.25em;
 }
-input {
-  float: left;
+input[type="text"],
+input[type="tel"],
+input[type="submit"],
+.error,
+.success {
+  width: 304px;
+  float: none;
+  display: block;
+  margin-right: 0;
+  margin-bottom: 10px;
+}
+input[type="submit"] {
+  margin-bottom: 0;
 }
 input[type="text"],
 input[type="tel"] {
   padding: 15px 20px;
   border: none;
-  width: 320px;
-  margin-right: 10px;
+  width: 304px;
   font-family: "Open Sans";
   font-size: 1em;
   font-weight: 300;
 }
-input[type="submit"] {
+input[type="submit"],
+.feedback {
   color: white;
   font-size: 1.25em;
   font-weight: bold;
@@ -135,9 +142,29 @@ input[type="submit"] {
   padding: 14px 38px;
   cursor: pointer;
 }
-/*#captcha_wrapper {
-  display: none;
-}*/
+.feedback {
+  display: table;
+  text-decoration: none;
+  margin: 0 auto;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-weight: normal;
+  margin-bottom: 10px;
+  border: 1px solid #4e1325;
+  border-radius: 5px;
+  background: #a90329;
+  background: -moz-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
+  background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%);
+  background: linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+  text-shadow: 0px -1px 0px rgba(30, 30, 30, 0.8);
+}
+.feedback:active {
+  position: relative;
+  top: 2px;
+  right: 1px;
+}
 article, footer {
   max-width: 53em;
   padding: 50px 20px;
@@ -203,28 +230,10 @@ footer div {
   header {
     background-image: url(../img/bg-928x522.jpg);
   }
-  input[type="text"],
-  input[type="tel"] {
-    width: 260px;
-  }
 }
 @media screen and (max-width: 808px) {
   header {
     background-image: url(../img/bg-808x455.jpg);
-  }
-  input[type="text"],
-  input[type="tel"],
-  input[type="submit"],
-  .error,
-  .success {
-    width: 320px;
-    float: none;
-    display: block;
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-  input[type="submit"] {
-    margin-bottom: 0;
   }
   header p:first-child, h1 {
     font-size: 2.75em;
@@ -262,10 +271,5 @@ footer div {
 @media screen and (max-width: 390px) {
   header {
     background-image: url(../img/bg-390x220.jpg);
-  }
-  input[type="text"],
-  input[type="tel"],
-  input[type="submit"] {
-    max-width: 240px;
   }
 }

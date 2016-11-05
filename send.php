@@ -41,7 +41,7 @@
 			echo "Where is captcha?";
 		}
 
-		$secret = "SECRET_CODE_HERE";
+		$secret = "PRIVATE_SECRET_KEY_HERE";
 		$response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secret."&response=".$captcha), true);
 
 		if ($response["success"] != false) {

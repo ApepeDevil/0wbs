@@ -10,22 +10,23 @@
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    function modal() {
+      var block = document.getElementById("feedback");
+      if (block.style.display == 'none') {
+        block.style.display = "table";
+      } else {
+        block.style.display = "none";
+      }
+    }
+  </script>
 </head>
 <body>
   <header>
     <div class="wrapper">
       <p>Хочешь много пива оптом? Оставь свой номер!</p>
-      <div class="subscribe">
-        <div id="form-messages"></div>
-        <form id="form" action="send.php" method="POST">
-          <input id="name" type="text" name="name" pattern="^[а-яА-ЯёЁa-zA-Z]{1,20}$" placeholder="Оставь своё имя" required>
-          <input id="tel" type="tel" name="tel" pattern="(\+?\d[- .]*){7,13}" placeholder="+7-111-111-11-11" required>
-            <div class="g-recaptcha captcha" data-sitekey="PUBLIC_KEY_HERE"></div>
-          
-          <input type="submit" value="Отправить">
-        </form>
-      </div>
-      <p class="policy">* Не ссы, оставь свой номер. Базарю, третьим лицам не разглашаем.(временно не работает)</p>
+      <a class="feedback" alt="Связаться с нами" href="#feedback" onclick="modal()">Связаться с нами</a>
+      <p class="policy">* Не ссы, оставь свой номер. Базарю, третьим лицам не разглашаем.</p>
     </div>
   </header>
   <main>
@@ -35,6 +36,15 @@
       <p>Probatus cotidieque mea ad, eu ornatus percipit sententiae usu. Ei pri velit aeque, ne quaeque vivendum praesent sea. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus. Vis ullamcorper instructior te. Tempor corpora definitiones ne mea, in cum tale summo bonorum. Ea duo quem quodsi animal, et brute quodsi euripidis usu. Ei pri velit aeque, ne quaeque vivendum praesent sea. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus.</p>
       <p>Probatus cotidieque mea ad, eu ornatus percipit sententiae usu. Ei pri velit aeque, ne quaeque vivendum praesent sea. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus. Vis ullamcorper instructior te. Tempor corpora definitiones ne mea, in cum tale summo bonorum. Ea duo quem quodsi animal, et brute quodsi euripidis usu. Ei pri velit aeque, ne quaeque vivendum praesent sea. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus.</p>
     </article>
+    <div id="feedback" class="subscribe" style="display: none">
+      <div id="form-messages"></div>
+      <form id="form" action="send.php" method="POST">
+        <input id="name" type="text" name="name" placeholder="Оставь своё имя" required>
+        <input id="tel" type="tel" name="tel" pattern="(\+?\d[- .]*){7,13}" placeholder="+7-111-111-11-11" required>
+        <div class="g-recaptcha captcha" data-sitekey="PUBLIC_KEY_HERE"></div>
+        <input type="submit" value="Отправить">
+      </form>
+    </div>
   </main>
   <hr>
   <footer>
@@ -50,7 +60,6 @@
       <p>Все права защищены.</p>
     </div>
   </footer>
-  <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script> -->
   <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.0.min.js"><\/script>')</script>
   <script>
