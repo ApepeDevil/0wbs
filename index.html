@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Продажа пива оптом, установка пивного оборудования на Сахалине">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Компания &laquo;Пивка для рывка&raquo;. Оптовая продажа пива</title>
+  <link rel="icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <p>Хочешь много пива оптом? Оставь свой номер!</p>
+      <div class="subscribe">
+        <div id="form-messages"></div>
+        <form id="form" action="send.php" method="POST">
+          <input id="name" type="text" name="name" pattern="^[а-яА-ЯёЁa-zA-Z]{1,20}$" placeholder="Оставь своё имя" required>
+          <input id="tel" type="tel" name="tel" pattern="(\+?\d[- .]*){7,13}" placeholder="+7-111-111-11-11" required>
+            <div class="g-recaptcha captcha" data-sitekey="6LejHQsUAAAAAFgtoThzh1YXzY9ol5M0i_45oqUc"></div>
+          
+          <input type="submit" value="Отправить">
+        </form>
+      </div>
+      <p class="policy">* Не ссы, оставь свой номер. Базарю, третьим лицам не разглашаем.(временно не работает)</p>
+    </div>
+  </header>
+  <main>
+    <article>
+      <h1>&laquo;Пивка для рывка&raquo; &mdash; лучшее пиво оптом</h1>
+      <img src="img/beer.png" alt="Пинта пенного пива">
+      <p>Probatus cotidieque mea ad, eu ornatus percipit sententiae usu. Ei pri velit aeque, ne quaeque vivendum praesent sea. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus. Vis ullamcorper instructior te. Tempor corpora definitiones ne mea, in cum tale summo bonorum. Ea duo quem quodsi animal, et brute quodsi euripidis usu. Ei pri velit aeque, ne quaeque vivendum praesent sea. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus.</p>
+      <p>Probatus cotidieque mea ad, eu ornatus percipit sententiae usu. Ei pri velit aeque, ne quaeque vivendum praesent sea. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus. Vis ullamcorper instructior te. Tempor corpora definitiones ne mea, in cum tale summo bonorum. Ea duo quem quodsi animal, et brute quodsi euripidis usu. Ei pri velit aeque, ne quaeque vivendum praesent sea. Ea quo modo saperet reprimique, in sed oporteat splendide, an per causae nonumes sensibus.</p>
+    </article>
+  </main>
+  <hr>
+  <footer>
+    <div class="address">
+      <ul>
+        <li><b>Телефон:</b> <a href="tel:+7 (111) 111 11 11">+7 (111) 111 11 11</a></li>
+        <li><b>E-Mail:</b> <a href="mailto:pivka@dlay.ryvka" title="Написать e-mail самому">pivka@dlay.ryvka</a></li>
+        <li><b>Адрес:</b> <a href="https://goo.gl/maps/jzrktuGCsn12" title="Расположение на Google Maps" target="_blank">Ближние, вторая хата справа, спросить соседа Васю</a></li>
+      </ul>
+    </div>
+    <div class="legal">
+      <p>&copy; Компания &laquo;Пивка для рывка&raquo; 2016. Оптовая продажа пива.</p>
+      <p>Все права защищены.</p>
+    </div>
+  </footer>
+  <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script> -->
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.0.min.js"><\/script>')</script>
+  <script>
+    $(function() {
+      var form = $('#form');
+      var formMessages = $('#form-messages');
+
+      $(form).submit(function(event) {
+        event.preventDefault();
+
+        var _formData = $(form).serialize();
+         _formData['g-recaptcha-response'] = grecaptcha.getResponse();
+
+        $.ajax({
+          type: 'POST',
+          url: $(form).attr('action'),
+          data: _formData
+        })
+
+        .done(function(response) {
+          $(formMessages).removeClass('error');
+          $(formMessages).addClass('success');
+
+          $(formMessages).text(response);
+
+          $('#name').val('');
+          $('#tel').val('');
+        })
+
+        .fail(function(data) {
+          $(formMessages).removeClass('success');
+          $(formMessages).addClass('error');
+
+          if (data.responseText !== '') {
+            $(formMessages).text(data.responseText);
+          } else {
+            $(formMessages).text('Oops! An error occured and your message could not be sent.');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+<script>
+  document.body.onload = function() {
+    var xhr = new XMLHttpRequest();
+    var url = 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,700&amp;subset=cyrillic';
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var style = document.createElement('style');
+        style.innerHTML = xhr.responseText;
+        document.head.appendChild(style);
+      }
+    };
+    xhr.send();
+  }
+</script>
+</html>
